@@ -1,0 +1,9 @@
+folium
+osmnx
+pandas
+geopandas
+matplotlib
+streamlit_folium
+wikipedia
+streamlit-extras
+
