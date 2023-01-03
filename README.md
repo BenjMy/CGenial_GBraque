@@ -9,5 +9,6 @@ Ressources pour le concours CGenial
 ```
 pip install -r requirements.txt
 pip install --force-reinstall package_with_metadata_issue
+conda env create -f environment.yml
 streamlit run Cgenial.py
 ```
