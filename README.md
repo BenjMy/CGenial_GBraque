@@ -8,5 +8,6 @@ Ressources pour le concours CGenial
 ## How to run this app
 ```
 pip install -r requirements.txt
+pip install --force-reinstall package_with_metadata_issue
 streamlit run Cgenial.py
 ```
