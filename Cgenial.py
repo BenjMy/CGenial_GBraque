@@ -18,7 +18,19 @@ import numpy as np
 
 APP_TITLE = 'CGenial concours: Les scientifiques de mon quartier'
 APP_SUB_TITLE = 'College Georges Braque'
-scientific_names_list = ['Joliot','Adrien Sénéchal','Name3']
+scientific_names_list = [
+                        # 'Joliot',
+# 						'Adrien Sénéchal',
+						'Galilée', 
+						'Lavoisier', 
+						'Newton',
+# 						'Arago', 
+# 						'Kepler', 
+# 						'Herschel', 
+# 						'Romer',
+# 						'Charpak',
+# 						'Eddington',
+						]
 
 GB_LATLONG = [49.22311782149911, 4.0165995097933]
 
@@ -46,9 +58,12 @@ def display_scientific_filter(streets):
 
 def display_pic(scientific_selected):
 	wikipage = wikipedia.page(scientific_selected)
-	st.image(wikipage.images[0], 
-		caption=scientific_selected + 'Source: wikipedia')
 
+	try:
+		st.image(wikipage.images[0], 
+			caption=scientific_selected + 'Source: wikipedia')
+	except:
+		pass
 
 def display_shortbio(scientific_selected):
 	st.write('short bio here')
@@ -67,7 +82,7 @@ def fetch_data():
 
 	# Fetch only the neighbour
 	# ---------------------
-	G2 = ox.graph_from_point(GB_LATLONG, dist=750, dist_type='bbox', network_type='drive')
+	G2 = ox.graph_from_point(GB_LATLONG, dist=1250, dist_type='bbox', network_type='drive')
 	nodesGB2_quartier, GB2_quartier = ox.graph_to_gdfs(G2)
 
 
@@ -102,15 +117,57 @@ def add_poi():
 	POI_pts = [GB_latlong]
 	return POI_pts
 
-def plot_folium(streets,scientifics):
+
+def display_tile_maps():
+	tile_map_selected = []
+	tile_map_list = ['Open Street Map','Esri','Stamen Toner']
+	tile_map_selected = st.sidebar.selectbox('Change type de carte', tile_map_list,
+											index=0)
+	return tile_map_selected
+
+
+def background_tile_type(my_map,tile_map_selected):
+
+	if tile_map_selected == 'Esri':
+		folium.TileLayer(tiles='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+			attr='Esri',
+			name='Esri Satellite',
+			overlay=True,
+			control=False,
+			).add_to(my_map)
+	elif tile_map_selected == 'Stamen Toner':
+		folium.TileLayer('Stamen Toner').add_to(my_map)
+	else:
+		pass
+
+
+def plot_folium(streets,street_with_scientific,tile_map_selected):
 	### Plot using folium explore (interactive)
 
-	map = streets.plot()
-	scientifics.explore(m=map, color='red',
-				 tooltip="name", # show "name" column in the tooltip)
-				)
+	my_map = folium.Map(location=GB_LATLONG, zoom_start=18)
 
-	st_map = st_folium(map, width=700, height=450)
+	my_map = streets.explore()
+
+	for s in street_with_scientific:
+		s.explore(m=my_map, color='red')
+
+	#folium.TileLayer('Stamen Toner').add_to(my_map)
+	#folium.TileLayer('Stamen Water Color').add_to(my_map)
+	#folium.TileLayer('cartodbpositron').add_to(my_map)
+	#folium.TileLayer('cartodbdark_matter').add_to(my_map)
+
+	if tile_map_selected!='Open Street Map':
+		background_tile_type(my_map,tile_map_selected)
+
+	#folium.LayerControl().add_to(my_map)
+
+	#st_folium(my_map)
+	POI_pts = add_poi()
+	for poi in POI_pts:
+		folium.Marker(location=[poi[0],poi[1]],
+						popup=poi[2],tooltip='Click ici').add_to(my_map)
+    
+	st_map = st_folium(my_map, width=700, height=450)
 
 
 def plot_POI(ax):
@@ -158,9 +215,11 @@ def main():
 			,icon="ℹ️")
 
 
+	tile_map_selected = display_tile_maps()
 
 	nodes, streets = fetch_data()
 	
+
 	# reshape name of the streets typ
 	# --------------------------------------------
 	streets = streets[streets['name'].notna()]
@@ -180,8 +239,11 @@ def main():
 	
 	# --------------------------------------------
 
+
 	with st.expander(f'La carte de mon quartier',expanded=True):
-		plot_folium_mpl(streets,street_with_scientific)
+		#plot_folium_mpl(streets,street_with_scientific)
+		plot_folium(streets,street_with_scientific,tile_map_selected)
+
 
 
 	if scientific_selected !='Tous':

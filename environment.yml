@@ -3,12 +3,13 @@ name: Cgenial
 dependencies:
   - python=3.9
   - pip
+  - streamlit-folium
   - pip:
     - folium
     - osmnx
     - pandas
     - geopandas
     - matplotlib
-    - streamlit_folium
     - wikipedia
-    - streamlit-extras
+    #- streamlit-extras
+    - mapclassify
