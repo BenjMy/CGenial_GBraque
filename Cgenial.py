@@ -57,7 +57,15 @@ def display_scientific_filter(streets):
 	return scientific_selected
 
 def display_pic(scientific_selected):
-	wikipage = wikipedia.page(scientific_selected)
+
+	if scientific_selected =='Newton':
+		scientific_selected_full = 'Isaac Newton'
+	elif scientific_selected =='Lavoisier':
+		scientific_selected_full = 'Antoine Laurent Lavoisier'
+	elif scientific_selected =='Galilée':
+		scientific_selected_full = 'Galilée (savant)'
+
+	wikipage = wikipedia.page(scientific_selected_full)
 
 	try:
 		st.image(wikipage.images[0], 
