@@ -38,7 +38,8 @@ GB_LATLONG = [49.22311782149911, 4.0165995097933]
 def authors():
 
 	st.sidebar.markdown('''
-	Credit: 
+
+	Contributeurs :male-student: :female-student: :female-teacher:
 	- Les élèves du college George Braque
 	- Encadrants: Marie Devert, Florian Mary 
 	'''
@@ -50,7 +51,7 @@ def display_scientific_filter(streets):
 	scientific_names_list.insert(0,'Tous')
 	st.sidebar.header('Selectionne un scientifique')
 	scientific_selected = 'Tous'
-	scientific_selected = st.sidebar.selectbox('Nom du scientifique', scientific_names_list,
+	scientific_selected = st.sidebar.selectbox('Nom du scientifique :female-scientist: :male-scientist:', scientific_names_list,
 												)
 	#st.write(scientific_selected)
 
@@ -63,7 +64,7 @@ def display_pic(scientific_selected):
 	elif scientific_selected =='Lavoisier':
 		scientific_selected_full = 'Antoine Laurent Lavoisier'
 	elif scientific_selected =='Galilée':
-		scientific_selected_full = 'Galilée (savant)'
+		scientific_selected_full = 'Galileo'
 
 	wikipage = wikipedia.page(scientific_selected_full)
 
@@ -216,9 +217,15 @@ def main():
 						 use_column_width=True)
 
 	st.info('''
-			Selectionne le nom d'un scientifique dans la colonne de gauche et visualise où se trouve la rue dans ton quartier. 
+
 			
-			La rue apparait en rouge
+			Selectionne le nom d'un scientifique dans la colonne de gauche et visualise où se trouve la rue dans ton quartier :world_map:. 
+			
+			La rue apparait en rouge! 
+
+			- Se trouve t'elle proche de chez toi :question:
+			- Se trouve t'elle proche du collège :question:
+
 			'''
 			,icon="ℹ️")
 
@@ -256,10 +263,20 @@ def main():
 
 	if scientific_selected !='Tous':
 
-		with st.expander(f'{scientific_selected} Biographie'):
+		st.info(f'''
+
+				Découvre quels travaux scientifiques à mener {scientific_selected} !
+				
+				Et reproduit son expérience en classe !
+				'''
+				,icon="ℹ️")
+
+
+		#with st.expander('##' + scientific_selected + 'biographie'):
+		with st.expander(f'{scientific_selected} biographie'):
 
 			#Display Biography
-			st.subheader(f'{scientific_selected} Biographie')
+			#st.subheader(f'{scientific_selected} Biographie')
 			col1, col2 = st.columns(2)
 
 			with col1:
