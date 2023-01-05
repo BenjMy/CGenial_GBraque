@@ -265,7 +265,7 @@ def main():
 
 		st.info(f'''
 
-				Découvre quels travaux scientifiques à mener {scientific_selected} !
+				Découvre quels travaux scientifiques a mené {scientific_selected} !
 				
 				Et reproduit son expérience en classe !
 				'''
