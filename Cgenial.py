@@ -17,7 +17,7 @@ import numpy as np
 
 
 APP_TITLE = 'CGenial concours: Les scientifiques de mon quartier'
-APP_SUB_TITLE = 'College Georges Braque'
+APP_SUB_TITLE = 'Collège Georges Braque'
 scientific_names_list = [
                         # 'Joliot',
 # 						'Adrien Sénéchal',
@@ -30,6 +30,9 @@ scientific_names_list = [
 # 						'Romer',
 # 						'Charpak',
 # 						'Eddington',
+# 						'Edward Jenner',
+# 						'Nicolas Copernic',
+# 						'François Jacob',
 						]
 
 GB_LATLONG = [49.22311782149911, 4.0165995097933]
@@ -40,8 +43,8 @@ def authors():
 	st.sidebar.markdown('''
 
 	Contributeurs :male-student: :female-student: :female-teacher:
-	- Les élèves du college George Braque
-	- Encadrants: Marie Devert, Florian Mary 
+	- Les élèves du collège Georges Braque
+	- Encadrants: M. Devert, F. Mary 
 	'''
 	)
 
@@ -209,7 +212,8 @@ def plot_folium_mpl(streets,street_with_scientific):
 
 
 def main():
-	st.set_page_config(APP_TITLE)
+	st.set_page_config(layout="wide", page_title=APP_TITLE)
+
 	st.title(APP_TITLE)
 	st.caption(APP_SUB_TITLE)
 
