@@ -6,4 +6,4 @@ matplotlib
 streamlit_folium
 wikipedia
 #streamlit-extras
-
+mapclassify
