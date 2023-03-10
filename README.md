@@ -13,10 +13,15 @@ conda env create -f environment.yml
 streamlit run Cgenial.py
 ```
 
+# Découvrons ce qu'il y a sous nos pieds!
 
-## Experience de detection d'object à l'aide de muons: peut-on imager un object sous nos pied en utilisant la physique des particules?
+Comment peut-on découvrir ce qu'il se cachent sous nos pieds sans creuser?
 
-https://www.osti.gov/servlets/purl/1494151
+Ref: https://howtomechatronics.com/tutorials/arduino/ultrasonic-sensor-hc-sr04/#google_vignette
+![image](https://user-images.githubusercontent.com/36472081/224283020-06c7f69b-24b1-4fa3-8eda-b2cdb3d81f88.png)
+
+https://www.syncfusion.com/succinctly-free-ebooks/arduino/detecting-objects
+https://makersportal.com/blog/2017/9/20/ultrasonic-range-finder-with-arduino
 
 ## Exemple en 2022
 https://www.cgenial.org/82-nos-actions/103-historique-concours-cgenial/237-concours-cgenial-2022
@@ -25,3 +30,5 @@ https://www.cgenial.org/82-nos-actions/103-historique-concours-cgenial/237-conco
 ## Nice tomography experiment
 
 https://www.science-on-stage.eu/material/tomography-school-optical-ct-scanner-lego-and-arduino
+
+Experience de detection d'object à l'aide de muons: peut-on imager un object sous nos pied en utilisant la physique des particules : https://www.osti.gov/servlets/purl/1494151
