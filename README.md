@@ -20,3 +20,8 @@ https://www.osti.gov/servlets/purl/1494151
 
 ## Exemple en 2022
 https://www.cgenial.org/82-nos-actions/103-historique-concours-cgenial/237-concours-cgenial-2022
+
+
+## Nice tomography experiment
+
+https://www.science-on-stage.eu/material/tomography-school-optical-ct-scanner-lego-and-arduino
