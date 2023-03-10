@@ -18,3 +18,5 @@ streamlit run Cgenial.py
 
 https://www.osti.gov/servlets/purl/1494151
 
+## Exemple en 2022
+https://www.cgenial.org/82-nos-actions/103-historique-concours-cgenial/237-concours-cgenial-2022
