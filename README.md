@@ -2,7 +2,7 @@
 Ressources pour le concours CGenial
 
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://benjmy-cgenial-gbraque-cgenial-qeh603.streamlit.app/)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://benjmy-cgenial-gbraque--cgenial-dr0nx8.streamlit.app/)
 
 
 ## How to run this app
