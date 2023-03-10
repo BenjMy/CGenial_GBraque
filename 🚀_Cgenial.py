@@ -17,6 +17,9 @@ import time
 import numpy as np
 import difflib
 
+from streamlit_extras.switch_page_button import switch_page
+
+
 
 APP_TITLE = 'CGenial concours: Les scientifiques de mon quartier'
 APP_SUB_TITLE = 'Collège Georges Braque'
@@ -60,6 +63,8 @@ def display_scientific_filter(streets):
 	scientific_selected = st.sidebar.selectbox('Nom du scientifique :female-scientist: :male-scientist:', scientific_names_list,
 												)
 	#st.write(scientific_selected)
+
+	st.session_state['scientific_selected'] = scientific_selected 
 
 	return scientific_selected
 
@@ -266,6 +271,10 @@ def main():
 	streets['name_string'] = newstreetname
 
 
+
+	if 'scientific_selected' not in st.session_state:
+		st.session_state['scientific_selected'] = 'Tous' #or whatever default
+
 	scientific_selected = display_scientific_filter(streets)
 
 	# --------------------------------------------
@@ -281,6 +290,10 @@ def main():
 
 
 	if scientific_selected !='Tous':
+
+		# https://discuss.streamlit.io/t/navigate-multipage-app-with-buttons-instead-of-sidebar/27986/7
+		# switch_page("en video")
+
 
 		st.info(f'''
 
