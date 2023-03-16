@@ -6,3 +6,4 @@ matplotlib
 streamlit_folium
 wikipedia
 mapclassify
+streamlit_extras
