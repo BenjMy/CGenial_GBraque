@@ -1,39 +1,39 @@
 import streamlit as st
 import os 
 import streamlit.components.v1 as components
-
+import glob
 
 
 APP_TITLE = 'CGenial concours: Notre travail'
 APP_SUB_TITLE = 'Les élèves du Collège Georges Braque'
 scientific_names_list = [
                         # 'Joliot',
-# 						'Adrien Sénéchal',
-						'Galilée',
-						'Joliot', 
-						'Newton',
-						'Lavoisier', 
- 						'Arago', 
- 						'Kepler', 
- 						'Herschel', 
- 						'Romer',
- 						'Charpak',
- 						'Eddington',
- 						'Edward Jenner',
- 						'Nicolas Copernic',
- 						'François Jacob',
-						]
+#                         'Adrien Sénéchal',
+                        'Galilée',
+                        'Joliot', 
+                        'Newton',
+                        'Lavoisier', 
+                         'Arago', 
+                         'Kepler', 
+                         'Herschel', 
+                         'Romer',
+                         'Charpak',
+                         'Eddington',
+                         'Edward Jenner',
+                         'Nicolas Copernic',
+                         'François Jacob',
+                        ]
 
 
 def authors():
 
-	st.sidebar.markdown('''
+    st.sidebar.markdown('''
 
-	Contributeurs :male-student: :female-student: :female-teacher:
-	- Les élèves du collège Georges Braque
-	- Encadrants: M. Devert, F. Mary 
-	'''
-	)
+    Contributeurs :male-student: :female-student: :female-teacher:
+    - Les élèves du collège Georges Braque
+    - Encadrants: M. Devert, F. Mary 
+    '''
+    )
 
 def paginator(label, items, items_per_page=10, on_sidebar=True):
     """Lets the user paginate a set of items.
@@ -89,28 +89,78 @@ def paginator(label, items, items_per_page=10, on_sidebar=True):
 
 
 def main():
-	st.set_page_config(layout="wide", page_title=APP_TITLE)
+    st.set_page_config(layout="wide", page_title=APP_TITLE)
 
-	st.title(APP_TITLE)
-	st.caption(APP_SUB_TITLE)
+    col1, col2, col3 = st.columns(3)
 
-	st.sidebar.image("https://www.sciencesalecole.org/wp-content/uploads/2022/09/CGenial_Concours_1920x1080.png",
-						 use_column_width=True)
+    with col1:
+         st.write(' ')
 
-	imageUrls = [
-		"./img/recherche_map.jpeg",
-		"./img/CGenial_Concours_1920x1080.png",
-	]
+    with col2:
+         st.image('./img/Bannière mars.png',
+        width=500)
+    with col3:
+         st.write(' ')
+         
+    st.title(APP_TITLE)
+    st.caption(APP_SUB_TITLE)
 
-	#st.image(imageUrls, use_column_width=True, caption=["Le travail des élèves du collège"] * len(imageUrls))
-	
-	image_iterator = paginator("Select a page", imageUrls)
-	indices_on_page, images_on_page = map(list, zip(*image_iterator))
-	st.image(images_on_page, width=400, caption=indices_on_page)
+    st.sidebar.image("https://www.sciencesalecole.org/wp-content/uploads/2022/09/CGenial_Concours_1920x1080.png",
+                         use_column_width=True)
 
 
-	authors()
+
+
+    option_photos = st.selectbox(
+        'Selectionne l''étape',
+        ('Recherche bibliographique', 'Expériences', 'Visite des rues'))
+
+    #st.image("./img/CGenial_Concours_1920x1080.png", 
+    #use_column_width=True, 
+    #caption='Le concours en photos')
+    
+    if option_photos=='Recherche bibliographique':
+        imageUrls = [
+            "./img/recherche_map.jpeg",
+            "./img/Portraits.JPG",
+        ]
+        st.image(imageUrls,
+                    width=500,
+                 use_column_width=False, caption=["Le travail des élèves du collège"] * len(imageUrls))
+
+
+    elif option_photos=='Expériences':
+        imageUrls = [
+            "./img/Disque.JPG",
+            "./img/IMG_0094.JPG",
+        ]
+        st.image(imageUrls, 
+            width=500,
+            use_column_width=False, caption=["Les expériences des élèves du collège"] * len(imageUrls))
+
+
+    elif option_photos=='Visite des rues':
+
+
+        imagesUrls = glob.glob('./img/Rues/*.jpg')
+        imagesUrls_list = list(imagesUrls)
+        #st.write(imagesUrls)
+
+        st.image(imagesUrls_list, 
+            width=500,
+            use_column_width=False, caption=["Visite des rues"] * len(imagesUrls_list))
+
+
+
+
+    
+    #image_iterator = paginator("Select a page", imageUrls)
+    #indices_on_page, images_on_page = map(list, zip(*image_iterator))
+    #st.image(images_on_page, width=400, caption=indices_on_page)
+
+
+    authors()
 
 
 if __name__ == "__main__":
-	main()
+    main()
